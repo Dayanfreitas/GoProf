@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,
+  "semi": false,
+  "endOfLine": "auto",
+  "arrow-parens" : true,
+  "strictNullChecks": "on",
+  "strictBooleanExpressions": "on"
+}

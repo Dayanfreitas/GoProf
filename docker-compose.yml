@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:5.7
+    container_name: padel-db
+
+    ports:
+      - "3306:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  padel-back:
+    container_name: goprof-back
+    build: ./back-app
+    # command: npm run dev
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./back-app:/usr/app
+    links:
+      - database:3306
+
+  padel-front:
+    container_name: goprof-front
+    build: ./front-app
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./front-app:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    links:
+      - goprof-back:back
