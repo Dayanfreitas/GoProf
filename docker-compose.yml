@@ -3,7 +3,7 @@ version: "3"
 services:
   database:
     image: mysql:5.7
-    container_name: padel-db
+    container_name: goprof-db
 
     ports:
       - "3306:3306"
@@ -14,7 +14,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
-  padel-back:
+  goprof-back:
     container_name: goprof-back
     build: ./back-app
     # command: npm run dev
@@ -27,7 +27,7 @@ services:
     links:
       - database:3306
 
-  padel-front:
+  goprof-front:
     container_name: goprof-front
     build: ./front-app
     stdin_open: true
