@@ -14,27 +14,6 @@ class User extends Password(Model) {
             expiresIn: process.env.EXPIRATION_TIME*1,
         });
     }
-    
-      
-    static get relationMappings() {
-        const Athlete = require('./Athlete');
-
-        return {
-            athletes: {
-                relation: Model.HasOneRelation,
-                modelClass: Athlete,
-                // join: {
-                //     from: 'users.athlete_id',
-                //     to: 'athletes.id'
-                // }
-                // modelClass: Athlete,
-                join: {
-                    from: 'athletes.id',
-                    to: 'users.athlete_id'
-                }
-            }
-        }
-    }
 
     static get jsonSchema() {
         return {

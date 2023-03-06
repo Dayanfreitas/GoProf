@@ -12,8 +12,7 @@ import { About, Header, Footer } from './views/components'
 import ViewLogin from './views/login'
 
 // User
-import { UsersOutlet, UsersList } from './views/users'
-import UserShow from './views/users/show'
+import { UsersOutlet, UsersList, UserShow } from './views/users'
 import FormUser from './views/users/form'
 import FormConfiguration from './views/users/configuration'
 
@@ -29,31 +28,26 @@ const PrivateRoute: React.FC<any> = () => {
 
 const Routers: React.FC<any> = () => (
   <BrowserRouter>
-    <Header />
+    {/* <Header /> */}
     <Box minH="80vh" overflowY="auto" m={5}>
       <Routes>
         <Route path="/" element={<About />} />
         <Route path="login" element={<ViewLogin />} />
-        <Route path="ranking" element={<ViewRanking />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="categories" element={<ViewCategorie />} />
-          {/* <Route path="products" element={<ViewProducts />} /> */}
-          {/* <Route path="users" element={ <FormUser/> } /> */}
-
+        {/* <Route element={<PrivateRoute />}>
           <Route path="users" element={<UsersOutlet />}>
             <Route index element={<UsersList />} />
             <Route path=":id" element={<UserShow />} />
             <Route path="new" element={<FormUser />} />
             <Route path="configuration/:id" element={<FormConfiguration />} />
           </Route>
-        </Route>
+        </Route> */}
 
         <Route path="/forbbiden" element={<Text p={'1em'}>Forbbiden</Text>} />
         <Route path="/not-found" element={<Text p={'1em'}>Not Found</Text>} />
         <Route path="*" element={<Text p={'1em'}>Not Found</Text>} />
       </Routes>
     </Box>
-    <Footer />
+    {/* <Footer /> */}
   </BrowserRouter>
 )
 

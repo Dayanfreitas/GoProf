@@ -24,7 +24,6 @@ import {
 } from '@chakra-ui/react';
 
 import { FaUserAlt, FaLock, FaRegEyeSlash, FaRegEye, FaGalacticSenate, FaSearch } from "react-icons/fa";
-import { Categories } from '../components'
 import AuthActions from '../../actions/Auth'
 
 
@@ -231,7 +230,6 @@ const FormUser = () => {
 
                     <FormControl isRequired>
                         <FormLabel htmlFor='categorie'>Categoria:</FormLabel>
-                        <Categories value={categorie} setCategorie={setCategorie}/>
                     </FormControl>
 
                     <FormControl isRequired isInvalid={isError}>

@@ -19,7 +19,6 @@ import {
     Avatar
 } from '@chakra-ui/react';
 
-import { Categories } from '../components'
 import AuthActions from '../../actions/Auth'
 
 const FormConfiguration = () => {
@@ -248,14 +247,6 @@ const FormConfiguration = () => {
                             onChange={(e) => { setNickName(e.target.value) }}
                         />
                     </FormControl>
-
-                    
-                    <FormAdminControl>
-                        <FormControl isRequired >
-                            <FormLabel htmlFor='categorie'>Categoria:</FormLabel>
-                            <Categories value={categorie} setCategorie={setCategorie}/>
-                        </FormControl>
-                    </FormAdminControl>
 
                     <FormControl isRequired isInvalid={isError}>
                         <FormLabel htmlFor='position'>Posição</FormLabel>

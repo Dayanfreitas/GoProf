@@ -28,7 +28,7 @@ import {Alert} from './commons/Alert'
 
 import AuthActions from '../../actions/Auth'
 import { useAccess, FormAuthControl, FormNotAuthControl } from "../../context/access";
-import logo from '../../assets/padel_sfs.jpg'
+// import logo from '../../assets/padel_sfs.jpg'
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -156,7 +156,7 @@ const Logo = () => {
     <Img
       boxSize='100px'
       objectFit='cover'
-      src={logo}
+      src={''}
       alt='Logo da empresa'
     />
   </>)

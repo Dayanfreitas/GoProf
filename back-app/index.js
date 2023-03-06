@@ -13,12 +13,7 @@ app.use(cors());
 
 //ROUTES 
 app.use('/users', routes.auth);
-app.use('/categories', routes.categories);
-app.use('/positions', routes.positions);
-app.use('/products', routes.products);
-app.use('/athletes', routes.athletes);
 
-// exportar images
 app.use(
     '/files', 
     express.static(
