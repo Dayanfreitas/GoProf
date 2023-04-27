@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Container, Button, Box } from '@chakra-ui/react'
-import { FaShareAlt, FaAngleDown } from 'react-icons/fa'
+import { FaAngleDown } from 'react-icons/fa'
+import { GoogleLogin } from '@react-oauth/google'
+import jwtDecode from 'jwt-decode'
 
 const Feed = () => {
   const contents = [
     {
       id: 1,
-      title: 'Como a tecnologia pode melhorar o gerenciamento de projetos"',
+      title: 'Como a tecnologia pode melhorar o gerenciamento de projetos',
       summary: 'Gerenciamento de projetos',
       description: `
         O texto "Como a tecnologia pode melhorar o gerenciamento de projetos" aborda os benefícios que a tecnologia pode trazer para o gerenciamento de projetos em diferentes setores e áreas de atuação. O conteúdo começa com uma breve introdução sobre o que é gerenciamento de projetos e sua importância para o sucesso de uma empresa ou organização. Em seguida, são apresentados exemplos de tecnologias que podem ser usadas para otimizar o processo de gerenciamento de projetos, como softwares de gestão de projetos, ferramentas de colaboração e comunicação, entre outros.
@@ -16,26 +18,36 @@ const Feed = () => {
         Ao final, o texto conclui destacando a importância de estar atualizado sobre as novas tecnologias e tendências na área de gerenciamento de projetos, e de como a tecnologia pode ser um aliado fundamental para alcançar o sucesso nos projetos e na carreira profissional.
       `,
       background: 'https://picsum.photos/seed/2/600/400',
-      tag: [
-        'Tecnologia',
-        'Gerenciamento de Projetos',
-        'Gestão de Projetos',
-        'Tecnologia da Info',
-      ],
     },
-    { id: 2, summary: 'Title 2', description: 'Description 2', tag: ['Tag 2'] },
-    { id: 3, summary: 'Title 3', description: 'Description 3', tag: ['Tag 3'] },
-    { id: 4, summary: 'Title 4', description: 'Description 4', tag: ['Tag 4'] },
+    { id: 2, summary: 'Title 2', description: 'Description 2' },
+    { id: 3, summary: 'Title 3', description: 'Description 3' },
+    { id: 4, summary: 'Title 4', description: 'Description 4' },
   ]
 
+  const [user, setUser] = useState({} as any)
   const [currentContent, setCurrent] = useState(contents[0])
 
   const handleNextContent = () => {
     setCurrent(contents[currentContent.id++])
   }
 
+  const responseMessage = (response) => {
+    const credential: any = jwtDecode(response.credential)
+
+    setUser({
+      email: credential.email,
+      name: credential.name,
+      given_name: credential.given_name,
+      family_name: credential.family_name,
+      picture: credential.picture,
+      sub: credential.sub,
+    })
+  }
+
   return (
     <Box minH="100vh" overflowY="hidden" p={5}>
+      <GoogleLogin text="continue_with" onSuccess={responseMessage} />
+
       <Container
         maxW="container.sm"
         p={0}
@@ -89,29 +101,6 @@ const Feed = () => {
                     p={2}
                   >
                     {currentContent.description}
-                  </Box>
-
-                  <Box
-                    color={'white'}
-                    fontWeight={'bold'}
-                    fontSize={'md'}
-                    textShadow={'0 0 2px #000'}
-                  >
-                    {currentContent.tag.map((tag) => (
-                      <Box
-                        key={tag}
-                        display={'inline-block'}
-                        bg={'whiteAlpha.500'}
-                        px={2}
-                        py={1}
-                        rounded={'md'}
-                        mr={2}
-                      >
-                        {tag}
-                      </Box>
-                    ))}
-
-                    {currentContent.tag.length > 2 && '+2'}
                   </Box>
                 </Box>
               </Box>
