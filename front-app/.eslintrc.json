@@ -22,7 +22,7 @@
     "rules": {
         "quotes": ["error", "single"],
         "strictNullChecks": "off",
-        "@typescript-eslint/consistent-type-imports": "warn",
+        "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/prefer-nullish-coalescing": "warn",
         "@typescript-eslint/strict-boolean-expressions": "warn"
 

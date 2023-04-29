@@ -10,7 +10,7 @@ import { Box, Text } from '@chakra-ui/layout'
 
 import AuthActions from './actions/Auth'
 import Feed from './views/components/Feed'
-import Header from './views/components/Header'
+import { Header } from './views/components/Header'
 
 // const PrivateRoute: React.FC<any> = () => {
 //   const validAuth = (): boolean => {
@@ -28,7 +28,6 @@ const Routers: React.FC<any> = () => (
       {/* <Route path="login" element={<ViewLogin />} /> */}
       {/* <Route element={<PrivateRoute />}>
           <Route path="users" element={<UsersOutlet />}>
-            <Route index element={<UsersList />} />
             <Route path=":id" element={<UserShow />} />
             <Route path="new" element={<FormUser />} />
             <Route path="configuration/:id" element={<FormConfiguration />} />

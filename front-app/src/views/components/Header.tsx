@@ -12,13 +12,11 @@ import {
 } from '@chakra-ui/react'
 
 import { useAccess } from '../../context/access'
-
 import { GoogleLogin } from '@react-oauth/google'
 import { OauthActions } from '../../actions/Oauth'
 import jwtDecode from 'jwt-decode'
-import { ChevronDownIcon } from '@chakra-ui/icons'
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { currentUser, setCurrentUser, logout } = useAccess()
 
   const responseMessage = async (response) => {
@@ -74,5 +72,3 @@ const Header: React.FC = () => {
     </>
   )
 }
-
-export default Header
