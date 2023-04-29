@@ -14,10 +14,10 @@ router.post('/google', async (req, res) => {
     } = req.body
 
     try {
-      const user = await User.query().findOne({ email: email })
+      const user = await User.query().findOne({ email: email, token_sub_google: sub })
       
       if (user) {
-        return res.status(400).send({ message: 'E-mail already registered'});
+        return res.status(200).send({ user, message: 'E-mail already registered'});
       }
 
       const userCreated = await User.query().insert({
