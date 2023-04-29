@@ -1,13 +1,11 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', function(table) {
     table.increments('id');
-    table.boolean('permission').defaultTo(false);
     table.string('name').notNullable();
+    table.string('last_name').notNullable();
     table.string('email').unique().notNullable();
-    table.string('passwordHash').notNullable();
-    table.string('phone').notNullable();
-    table.string('token');
-    table.string('image_base_64');
+    table.string('token_sub_google').unique().notNullable();
+    table.string('image_path');
   });
 };
 
