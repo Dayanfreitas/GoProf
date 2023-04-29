@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string('name').notNullable();
     table.string('last_name').notNullable();
     table.string('email').unique().notNullable();
-    table.string('token_sub_google').unique().notNullable();
+    table.string('token_sub_google').unique();
     table.string('image_path');
   });
 };
