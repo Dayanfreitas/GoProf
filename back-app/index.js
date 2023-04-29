@@ -14,6 +14,7 @@ app.use(cors());
 //ROUTES 
 app.use('/oauth', routes.oauth);
 app.use('/users', routes.users);
+app.use('/contents', routes.contents);
 
 // app.use(
 //     '/files', 
