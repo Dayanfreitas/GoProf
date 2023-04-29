@@ -21,8 +21,8 @@ app.use(
     )
 )
 
-app.get('/', async (req, res)=>{
-    res.json('Hello World');
+app.get('/health', async (req, res)=>{
+    res.json({'ok': 'Server is running'});
 })
 
 app.listen(PORT, HOST)
