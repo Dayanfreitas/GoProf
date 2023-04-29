@@ -1,9 +1,15 @@
 const { Model } = require('objection');
 const knex = require('knex');
-const configuration = require('../../knexfile'); 
+const knexfile = require('../../knexfile'); 
 
-const config = process.env.NODE_ENV === 'test' ? configuration.test : configuration.development
-const database = knex(config)
-Model.knex(config)
+const configuration = process.env.NODE_ENV === 'test' ? knexfile.test : knexfile.development
 
-module.exports = database;
+Model.knex(
+  knex(configuration)
+)
+
+class ModelBase extends Model {
+
+}
+
+module.exports = ModelBase
