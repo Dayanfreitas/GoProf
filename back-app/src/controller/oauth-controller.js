@@ -17,7 +17,7 @@ router.post('/google', async (req, res) => {
       const user = await User.query().findOne({ email: email })
       
       if (user) {
-        return res.status(400).send({error: 'E-mail already registered'});
+        return res.status(400).send({ message: 'E-mail already registered'});
       }
 
       const userCreated = await User.query().insert({
@@ -34,8 +34,7 @@ router.post('/google', async (req, res) => {
       })
 
     } catch (err) {
-      console.error('user', err)
-      return res.status(400).json({ error: 'Registration failed', err})
+      return res.status(400).json({ message: 'Registration failed', err})
     }
 })
 

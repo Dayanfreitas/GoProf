@@ -4,6 +4,9 @@ import { FaAngleDown } from 'react-icons/fa'
 import { GoogleLogin } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode'
 
+import { OauthActions } from '../../actions/Oauth'
+import { UserProps } from '../@props/UsersProps'
+
 const Feed = () => {
   const contents = [
     {
@@ -24,24 +27,26 @@ const Feed = () => {
     { id: 4, summary: 'Title 4', description: 'Description 4' },
   ]
 
-  const [user, setUser] = useState({} as any)
+  const [user, setUser] = useState<UserProps>({} as UserProps)
   const [currentContent, setCurrent] = useState(contents[0])
 
   const handleNextContent = () => {
     setCurrent(contents[currentContent.id++])
   }
 
-  const responseMessage = (response) => {
+  const responseMessage = async (response) => {
     const credential: any = jwtDecode(response.credential)
 
-    setUser({
+    const OauthGoogleResponse: any = await OauthActions().OauthGoogle({
       email: credential.email,
       name: credential.name,
       given_name: credential.given_name,
       family_name: credential.family_name,
-      picture: credential.picture,
+      image_path: credential.picture,
       sub: credential.sub,
     })
+
+    setUser(OauthGoogleResponse?.data?.user)
   }
 
   return (

@@ -12,14 +12,15 @@ app.use(express.json());
 app.use(cors());
 
 //ROUTES 
-app.use('/users', routes.auth);
+app.use('/oauth', routes.oauth);
+app.use('/users', routes.users);
 
-app.use(
-    '/files', 
-    express.static(
-        path.resolve(__dirname, 'tmp', 'uploads')
-    )
-)
+// app.use(
+//     '/files', 
+//     express.static(
+//         path.resolve(__dirname, 'tmp', 'uploads')
+//     )
+// )
 
 app.get('/health', async (req, res)=>{
     res.json({'ok': 'Server is running'});
