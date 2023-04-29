@@ -7,17 +7,10 @@ import {
   // Outlet,
 } from 'react-router-dom'
 import { Box, Text } from '@chakra-ui/layout'
-// import { About, Header, Footer } from './views/components'
-
-// import ViewLogin from './views/login'
-
-// User
-// import { UsersOutlet, UsersList, UserShow } from './views/users'
-// import FormUser from './views/users/form'
-// import FormConfiguration from './views/users/configuration'
 
 import AuthActions from './actions/Auth'
 import Feed from './views/components/Feed'
+import Header from './views/components/Header'
 
 // const PrivateRoute: React.FC<any> = () => {
 //   const validAuth = (): boolean => {
@@ -29,8 +22,7 @@ import Feed from './views/components/Feed'
 
 const Routers: React.FC<any> = () => (
   <BrowserRouter>
-    {/* <Header /> */}
-    {/* <Box minH="80vh" overflowY="auto" m={5}> */}
+    <Header />
     <Routes>
       <Route path="/" element={<Feed />} />
       {/* <Route path="login" element={<ViewLogin />} /> */}

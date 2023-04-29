@@ -4,4 +4,6 @@ export type UserProps = {
   email: string
   token_sub_google: string
   image_path: string
+  id?: number
+  cache?: boolean
 }
