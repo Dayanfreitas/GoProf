@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Button, Box } from '@chakra-ui/react'
-import { FaAngleDown } from 'react-icons/fa'
+import { Container, Button, Box, Flex, useDisclosure } from '@chakra-ui/react'
+import { FaAngleDown, FaShareAlt } from 'react-icons/fa'
 import { ContentsActions } from '../../actions/Contents'
+import { BsFlagFill } from 'react-icons/bs'
 
 import Content from './Contents'
-import { useAccess } from '../../context/access'
+import { SharedPopUp } from './commons/SharedPopUp'
+import { useParams } from 'react-router-dom'
 
 const Feed: React.FC = () => {
-  const [contents, setContents] = useState<Array<number>>([])
+  const { id } = useParams()
+  console.log('@id', id)
+
+  const {
+    isOpen: isOpenShared,
+    onOpen: onOpenShared,
+    onClose: onCloseShared,
+  } = useDisclosure()
+
+  const [contents, setContents] = useState<number[]>([])
   const [currentContent, setCurrent] = useState<number>(0)
-  const { currentUser, setCurrentUser } = useAccess()
 
   useEffect(() => {
-    fetchAllContents()
+    void fetchAllContents()
   }, [])
 
-  const handleNextContent = () => {
+  const handleNextContent = (): void => {
+    if (id) {
+      window.location.href = '/'
+    }
     const next = currentContent + 1
     const last = contents.length - 1
 
@@ -24,7 +37,7 @@ const Feed: React.FC = () => {
     }
   }
 
-  const fetchAllContents = async () => {
+  const fetchAllContents = async (): Promise<void> => {
     const response: any = await ContentsActions().getAll()
 
     if (response?.data?.contents) {
@@ -33,9 +46,7 @@ const Feed: React.FC = () => {
   }
 
   return (
-    <Box minH="100vh" overflowY="hidden" p={5}>
-      {currentUser && currentUser.id}
-      {currentUser && currentUser.name}
+    <Box p={5}>
       <Container
         maxW="container.sm"
         p={0}
@@ -43,20 +54,29 @@ const Feed: React.FC = () => {
         borderRadius={13}
         borderColor={'blackAlpha.500'}
         boxShadow={'lg'}
-        height="90vh"
+        // height="90vh"
       >
-        <Content currentContent={contents[currentContent]} />
+        {id && <Content currentContent={Number(id)} />}
+        {!id && <Content currentContent={contents[currentContent]} />}
       </Container>
 
-      {/* <Box>
-        <Button rounded={'lg'}>
+      <Flex>
+        <Button m={2} rounded={'lg'} onClick={onOpenShared}>
           <FaShareAlt width={'4em'} height={'4em'} />
         </Button>
-      </Box> */}
-
-      <Button float={'right'} onClick={handleNextContent}>
+        <Button m={2} rounded={'lg'}>
+          <BsFlagFill width={'4em'} height={'4em'} />
+        </Button>
+      </Flex>
+      <Button m={2} float={'right'} onClick={handleNextContent}>
         <FaAngleDown />
       </Button>
+
+      <SharedPopUp
+        idContent={Number(id) || contents[currentContent]}
+        isOpen={isOpenShared}
+        onClose={onCloseShared}
+      />
     </Box>
   )
 }

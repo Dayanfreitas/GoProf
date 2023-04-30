@@ -25,6 +25,7 @@ const Routers: React.FC<any> = () => (
     <Header />
     <Routes>
       <Route path="/" element={<Feed />} />
+      <Route path="/feed/:id" element={<Feed />} />
       {/* <Route path="login" element={<ViewLogin />} /> */}
       {/* <Route element={<PrivateRoute />}>
           <Route path="users" element={<UsersOutlet />}>
@@ -38,8 +39,6 @@ const Routers: React.FC<any> = () => (
       <Route path="/not-found" element={<Text p={'1em'}>Not Found</Text>} />
       <Route path="*" element={<Text p={'1em'}>Not Found</Text>} />
     </Routes>
-    {/* </Box> */}
-    {/* <Footer /> */}
   </BrowserRouter>
 )
 
