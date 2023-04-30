@@ -4,6 +4,8 @@ exports.up = function(knex) {
     table.string('type_report').notNullable()
     table.integer('content_id').unsigned();
     table.foreign('content_id').references("contents.id");
+    table.integer('user_id').unsigned();
+    table.foreign('user_id').references("users.id");
   })
 }
 
