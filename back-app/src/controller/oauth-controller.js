@@ -4,6 +4,21 @@ const express = require('express');
 
 const router = express.Router();
 
+router.get('/token', async (req, res) => {
+  const { 
+    email,
+    sub
+  } = req.body
+
+  try{
+    const user = await User.query().findOne({ email: email, token_sub_google: sub })
+    
+    res.status(200).json({ ok: true, user: { email, sub }, token: user.generateToken() })
+  }catch (err) {
+    return res.status(500).json({ message: "Erro genereted token", err})
+  }
+})
+
 router.post('/google', async (req, res) => {
     const { 
       family_name,
@@ -15,9 +30,9 @@ router.post('/google', async (req, res) => {
 
     try {
       const user = await User.query().findOne({ email: email, token_sub_google: sub })
-      
+
       if (user) {
-        return res.status(200).send({ user, message: 'E-mail already registered'});
+        return res.status(200).send({ user, token: user.generateToken(), message: 'E-mail already registered'});
       }
 
       const userCreated = await User.query().insert({
@@ -30,6 +45,7 @@ router.post('/google', async (req, res) => {
 
       return res.status(200).json({
         user: userCreated,
+        token: userCreated.generateToken(),
         message: 'Successfully authenticated !'
       })
 

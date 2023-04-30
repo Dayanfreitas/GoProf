@@ -1,10 +1,17 @@
 const ModelBase = require('../database/database')
+const jwt = require('jsonwebtoken');
 
 class User extends ModelBase {
     static get tableName() {
         return 'users';
     }
     
+    generateToken () {
+        return jwt.sign({ id: this.id }, process.env.APP_SECRET, {
+            expiresIn: process.env.EXPIRATION_TIME * 1,
+        });
+    }
+
     static get jsonSchema() {
         return {
             type: 'object',

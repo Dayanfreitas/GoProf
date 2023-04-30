@@ -1,5 +1,5 @@
 import Api from "../services/api"
-// import { saveToken, getToken, removeToken } from "../services/auth" 
+import { saveToken, getToken, removeToken } from "../services/auth" 
 // import Navigator from '../utils/navigator'
 
 // function AuthActions() {
@@ -148,6 +148,7 @@ export function OauthActions() {
         if (oauthGoogleResponse.status == 200) {
 
           alert('Login com o Google realizado com sucesso!')
+          saveToken(oauthGoogleResponse.data.token)
           resolve(oauthGoogleResponse)
         }
       }catch (err) {

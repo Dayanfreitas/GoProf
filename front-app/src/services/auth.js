@@ -1,4 +1,4 @@
-const KEY = 'token'
+const KEY = 'token@goprof'
 
 export const saveToken = (token) => {
     localStorage.setItem(KEY, token)
