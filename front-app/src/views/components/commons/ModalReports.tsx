@@ -34,7 +34,7 @@ export const ModalReports: React.FC<ModalReportsProps> = ({
       return
     }
     fetchContentById(idContent)
-  }, [isOpen])
+  }, [idContent, isOpen])
 
   const fetchContentById = async (id: number) => {
     const response: any = await ContentsActions().getById(id)

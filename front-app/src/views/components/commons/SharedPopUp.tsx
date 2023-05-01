@@ -17,12 +17,7 @@ import {
   ModalFooter,
 } from '@chakra-ui/react'
 import { LinkIcon } from '@chakra-ui/icons'
-import {
-  FaFacebookSquare,
-  FaLinkedin,
-  FaTwitter,
-  FaWhatsapp,
-} from 'react-icons/fa'
+import { FaFacebookSquare, FaWhatsapp } from 'react-icons/fa'
 import { ContentsActions } from '../../../actions/Contents'
 
 export const SharedPopUp: React.FC<SharedPopUpProps> = ({
@@ -96,7 +91,6 @@ export const SharedPopUp: React.FC<SharedPopUpProps> = ({
     const height = 400
     const left = (window.innerWidth - width) / 2
     const top = (window.innerHeight - height) / 2
-    const url = facebookLink
 
     const opts =
       'status=1' +
