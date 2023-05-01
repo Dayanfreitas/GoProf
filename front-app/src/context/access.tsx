@@ -2,8 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { UserProps } from '../views/@props/UsersProps'
 import { getUser, saveUser, removeUser, removeToken } from '../services/auth'
 
-const KEY_LOCALSTORAGE = 'goprof@user'
-
 export type AccessContextProps = {
   setCurrentUser: any
   currentUser: UserProps
