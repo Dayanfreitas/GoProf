@@ -13,7 +13,7 @@ export function ContentsActions() {
       try{
         const response = await Api.get('/contents', params)
         
-        if (response.status == 200) {
+        if (response.status === 200) {
           resolve(response)
         }
       }catch (err) {
@@ -29,7 +29,7 @@ export function ContentsActions() {
       try{
         const response = await Api.get('/contents/'+ id)
         
-        if (response.status == 200) {
+        if (response.status === 200) {
           resolve(response)
         }
       }catch (err) {
@@ -45,7 +45,7 @@ export function ContentsActions() {
       try{
         const response = await Api.get('/contents/link-shared/'+ id)
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           resolve(response)
         }
       }catch (err) {
@@ -61,7 +61,7 @@ export function ContentsActions() {
       try{
         const response = await Api.post('/contents/reports', params)
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           resolve(response)
         }
       }catch (err) {

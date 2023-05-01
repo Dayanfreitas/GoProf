@@ -6,7 +6,7 @@ import {
   // Navigate,
   // Outlet,
 } from 'react-router-dom'
-import { Box, Text } from '@chakra-ui/layout'
+import { Text } from '@chakra-ui/layout'
 
 import AuthActions from './actions/Auth'
 import Feed from './views/components/Feed'
