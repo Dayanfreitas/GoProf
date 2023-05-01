@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Container, Button, Box, Flex, useDisclosure } from '@chakra-ui/react'
 import { FaAngleDown, FaShareAlt } from 'react-icons/fa'
 import { ContentsActions } from '../../actions/Contents'
@@ -10,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import { ModalReports } from './commons/ModalReports'
 
 const Feed: React.FC = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
 
   const {
@@ -33,7 +35,7 @@ const Feed: React.FC = () => {
 
   const handleNextContent = (): void => {
     if (id) {
-      window.location.href = '/'
+      navigate('/')
     }
     const next = currentContent + 1
     const last = contents.length - 1

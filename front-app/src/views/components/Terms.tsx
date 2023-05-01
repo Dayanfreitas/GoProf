@@ -1,9 +1,13 @@
 import React from 'react'
 import { Box, Text, Button } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 export const Terms: React.FC = () => {
+  const navigate = useNavigate()
+
   const termAccepted = () => {
     alert('termAccepted!!')
+    navigate('/')
   }
 
   return (

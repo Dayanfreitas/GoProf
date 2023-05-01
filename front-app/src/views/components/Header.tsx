@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Avatar,
   Box,
@@ -17,6 +18,7 @@ import { OauthActions } from '../../actions/Oauth'
 import jwtDecode from 'jwt-decode'
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate()
   const { currentUser, setCurrentUser, logout } = useAccess()
 
   const responseMessage = async (response) => {
@@ -60,7 +62,7 @@ export const Header: React.FC = () => {
                   <MenuItem onClick={logout}>Logout</MenuItem>
                   <MenuItem
                     onClick={() => {
-                      console.log('terms')
+                      navigate('/terms')
                     }}
                   >
                     Termos de uso
