@@ -11,6 +11,7 @@ import { Text } from '@chakra-ui/layout'
 import AuthActions from './actions/Auth'
 import Feed from './views/components/Feed'
 import { Header } from './views/components/Header'
+import { Terms } from './views/components'
 
 // const PrivateRoute: React.FC<any> = () => {
 //   const validAuth = (): boolean => {
@@ -35,6 +36,7 @@ const Routers: React.FC<any> = () => (
           </Route>
         </Route> */}
 
+      <Route path="/terms" element={<Terms />} />
       <Route path="/forbbiden" element={<Text p={'1em'}>Forbbiden</Text>} />
       <Route path="/not-found" element={<Text p={'1em'}>Not Found</Text>} />
       <Route path="*" element={<Text p={'1em'}>Not Found</Text>} />

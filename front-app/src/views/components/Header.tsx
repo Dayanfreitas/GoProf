@@ -58,6 +58,13 @@ export const Header: React.FC = () => {
                 </MenuButton>
                 <MenuList>
                   <MenuItem onClick={logout}>Logout</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      console.log('terms')
+                    }}
+                  >
+                    Termos de uso
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>
