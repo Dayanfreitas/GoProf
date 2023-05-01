@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { UserProps } from '../views/@props/UsersProps'
+import { getUser, saveUser, removeUser, removeToken } from '../services/auth'
 
 const KEY_LOCALSTORAGE = 'goprof@user'
 
@@ -25,15 +26,14 @@ export default function AccessProvider({ children }) {
   } as UserProps)
 
   useEffect(() => {
-    const user = localStorage.getItem(KEY_LOCALSTORAGE)
-    if (user) {
-      setCurrentUser(Object.assign(JSON.parse(user), { cache: true }))
+    if (getUser()) {
+      setCurrentUser(Object.assign(getUser(), { cache: true }))
     }
   }, [])
 
   useEffect(() => {
     if (!currentUser?.cache) {
-      localStorage.setItem(KEY_LOCALSTORAGE, JSON.stringify(currentUser))
+      saveUser(currentUser)
     }
   }, [currentUser])
 
@@ -51,7 +51,8 @@ export function useAccess(): UseAccessContext {
 
   const logout = (): void => {
     setCurrentUser({} as UserProps)
-    localStorage.removeItem(KEY_LOCALSTORAGE)
+    removeToken()
+    removeUser()
   }
 
   return {
