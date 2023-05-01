@@ -7,15 +7,21 @@ import { BsFlagFill } from 'react-icons/bs'
 import Content from './Contents'
 import { SharedPopUp } from './commons/SharedPopUp'
 import { useParams } from 'react-router-dom'
+import { ModalReports } from './commons/ModalReports'
 
 const Feed: React.FC = () => {
   const { id } = useParams()
-  console.log('@id', id)
 
   const {
     isOpen: isOpenShared,
     onOpen: onOpenShared,
     onClose: onCloseShared,
+  } = useDisclosure()
+
+  const {
+    isOpen: isOpenModalReports,
+    onOpen: onOpenModalReports,
+    onClose: onCloseModalReports,
   } = useDisclosure()
 
   const [contents, setContents] = useState<number[]>([])
@@ -64,7 +70,7 @@ const Feed: React.FC = () => {
         <Button m={2} rounded={'lg'} onClick={onOpenShared}>
           <FaShareAlt width={'4em'} height={'4em'} />
         </Button>
-        <Button m={2} rounded={'lg'}>
+        <Button m={2} rounded={'lg'} onClick={onOpenModalReports}>
           <BsFlagFill width={'4em'} height={'4em'} />
         </Button>
       </Flex>
@@ -76,6 +82,12 @@ const Feed: React.FC = () => {
         idContent={Number(id) || contents[currentContent]}
         isOpen={isOpenShared}
         onClose={onCloseShared}
+      />
+
+      <ModalReports
+        idContent={Number(id) || contents[currentContent]}
+        isOpen={isOpenModalReports}
+        onClose={onCloseModalReports}
       />
     </Box>
   )

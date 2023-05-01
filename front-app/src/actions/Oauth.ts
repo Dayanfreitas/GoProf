@@ -153,6 +153,7 @@ export function OauthActions() {
         }
       }catch (err) {
         const { response } = err
+        removeToken()
         
         alert('Erro ao realizar login com o Google!'+ response.data.message)
         reject(response)

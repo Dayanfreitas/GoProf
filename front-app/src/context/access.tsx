@@ -16,11 +16,13 @@ type UseAccessContext = {
 
 export const AccessContext = createContext<AccessContextProps>({
   setCurrentUser: () => {},
-  currentUser: {} as UserProps,
+  currentUser: undefined,
 })
 
 export default function AccessProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState<UserProps>({} as UserProps)
+  const [currentUser, setCurrentUser] = useState<UserProps>({
+    cache: true,
+  } as UserProps)
 
   useEffect(() => {
     const user = localStorage.getItem(KEY_LOCALSTORAGE)
