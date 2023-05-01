@@ -22,9 +22,10 @@
     "rules": {
         "quotes": ["error", "single"],
         "strictNullChecks": "off",
+        "key-spacing": "off",
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/prefer-nullish-coalescing": "warn",
-        "@typescript-eslint/strict-boolean-expressions": "warn"
-
+        "@typescript-eslint/strict-boolean-expressions": "warn",
+        "@typescript-eslint/consistent-generic-constructors": "off"
     }
 }
