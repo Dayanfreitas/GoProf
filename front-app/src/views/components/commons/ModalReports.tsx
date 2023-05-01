@@ -30,6 +30,9 @@ export const ModalReports: React.FC<ModalReportsProps> = ({
   const [value, setValue] = React.useState('HATE_SPEECH')
 
   useEffect(() => {
+    if (!idContent) {
+      return
+    }
     fetchContentById(idContent)
   }, [isOpen])
 

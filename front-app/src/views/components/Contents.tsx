@@ -12,6 +12,10 @@ const Content: React.FC<ContentProps> = ({ currentContent }) => {
   const [current, setCurrent] = useState<ContentsProps>()
 
   useEffect(() => {
+    if (!currentContent) {
+      return
+    }
+
     setIsLoaded(false)
     fetchContentById(currentContent)
   }, [currentContent])
