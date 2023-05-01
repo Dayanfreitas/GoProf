@@ -1,5 +1,3 @@
-const { knex } = require("../database");
-
 exports.up = function(knex) {
   return knex.schema.alterTable('users', function(table) {
     table.date('terms_accepted_at').defaultTo();
