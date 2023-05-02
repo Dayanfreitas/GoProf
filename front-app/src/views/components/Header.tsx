@@ -11,6 +11,8 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
+import { FaPlay, FaRegListAlt } from 'react-icons/fa'
+import { MdOutlineLogout } from 'react-icons/md'
 
 import { useAccess } from '../../context/access'
 import { GoogleLogin } from '@react-oauth/google'
@@ -59,13 +61,26 @@ export const Header: React.FC = () => {
                   </Text>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem onClick={logout}>Logout</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate('/')
+                    }}
+                  >
+                    <FaPlay />
+                    <Text ml={1}>Feed</Text>
+                  </MenuItem>
+                  <MenuItem onClick={logout}>
+                    {' '}
+                    <MdOutlineLogout />
+                    <Text ml={1}>Logout</Text>
+                  </MenuItem>
                   <MenuItem
                     onClick={() => {
                       navigate('/terms')
                     }}
                   >
-                    Termos de uso
+                    <FaRegListAlt />
+                    <Text ml={1}>Termos de uso</Text>
                   </MenuItem>
                 </MenuList>
               </Menu>

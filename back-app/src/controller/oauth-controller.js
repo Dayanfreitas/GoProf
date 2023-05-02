@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/token', async (req, res) => {
+router.post('/token', async (req, res) => {
   const { 
     email,
     sub

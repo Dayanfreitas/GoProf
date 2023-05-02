@@ -26,7 +26,30 @@ export function OauthActions() {
     })
   }
 
+  const OauthToken = async (params = {email: '', token_sub_google: ''}) => {
+    return new Promise( async (resolve, reject) => {
+      try{
+        const oauthGentokenResponse = await Api.post('/oauth/token', {
+          email: params.email,
+          sub: params.token_sub_google
+        })
+
+        if (oauthGentokenResponse.status === 200) {
+          console.log('OauthGentoken', oauthGentokenResponse.data.token)
+          saveToken(oauthGentokenResponse.data.token)
+          resolve(oauthGentokenResponse.data.token)
+        }
+      }catch (err) {
+        const { response } = err
+        console.log("erro",err)
+        removeToken()
+        reject(response)
+      }
+    })  
+  }
+
   return {
-    OauthGoogle
+    OauthGoogle,
+    OauthToken
   }
 }

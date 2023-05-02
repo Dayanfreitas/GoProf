@@ -68,17 +68,23 @@ const Feed: React.FC = () => {
         {!id && <Content currentContent={contents[currentContent]} />}
       </Container>
 
-      <Flex>
+      <Flex justifyContent={'center'}>
+        {/* <Button m={2} onClick={handleNextContent}>
+          <FaAngleDown />
+        </Button> */}
+
         <Button m={2} rounded={'lg'} onClick={onOpenShared}>
           <FaShareAlt width={'4em'} height={'4em'} />
         </Button>
+
         <Button m={2} rounded={'lg'} onClick={onOpenModalReports}>
           <BsFlagFill width={'4em'} height={'4em'} />
         </Button>
+
+        <Button m={2} onClick={handleNextContent}>
+          <FaAngleDown />
+        </Button>
       </Flex>
-      <Button m={2} float={'right'} onClick={handleNextContent}>
-        <FaAngleDown />
-      </Button>
 
       <SharedPopUp
         idContent={Number(id) || contents[currentContent]}

@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios"
 import Api from "../services/api"
+import ApiAutenticator from "../services/api_ouath"
 
 export type ReportsActionParams = {
   content_id: number,
@@ -59,7 +60,7 @@ export function ContentsActions() {
   const reports = async (params: ReportsActionParams): Promise<AxiosResponse> => {
     return new Promise( async (resolve, reject) => {
       try{
-        const response = await Api.post('/contents/reports', params)
+        const response = await ApiAutenticator.post('/contents/reports', params)
 
         if (response.status === 200) {
           resolve(response)
