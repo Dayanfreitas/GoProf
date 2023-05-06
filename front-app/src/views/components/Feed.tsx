@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Button, Box, Flex, useDisclosure } from '@chakra-ui/react'
+import {
+  Container,
+  Button,
+  Box,
+  Flex,
+  useDisclosure,
+  useToast,
+} from '@chakra-ui/react'
 import { FaAngleDown, FaShareAlt } from 'react-icons/fa'
 import { ContentsActions } from '../../actions/Contents'
 import { BsFlagFill } from 'react-icons/bs'
@@ -11,6 +18,7 @@ import { useParams } from 'react-router-dom'
 import { ModalReports } from './commons/ModalReports'
 
 const Feed: React.FC = () => {
+  const toast = useToast()
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -46,10 +54,20 @@ const Feed: React.FC = () => {
   }
 
   const fetchAllContents = async (): Promise<void> => {
-    const response: any = await ContentsActions().getAll()
+    try {
+      const response: any = await ContentsActions().getAll()
 
-    if (response?.data?.contents) {
-      setContents(response?.data?.contents)
+      if (response?.data?.contents) {
+        setContents(response?.data?.contents)
+      }
+    } catch (error) {
+      toast({
+        title: 'Erro ao carregar conteúdos',
+        description: 'Tente novamente mais tarde',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
     }
   }
 
