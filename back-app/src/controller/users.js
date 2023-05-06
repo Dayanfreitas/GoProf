@@ -21,15 +21,17 @@ router.get('/:id', [authMiddleware, authMySelfMiddleware], async (req, res) => {
 });
 
 
-// router.post('/users/term-accepet', [authMiddleware, authMySelfMiddleware], async (req, res) => {
-//   const user = await User.query().findById(req.params.id)
-  
-//   if(!user) {
-//     return res.status(404).json({ ok: false, message: 'User not found'})
-//   }
+router.post('/terms-accepet', [authMiddleware], async (req, res) => {
+  const user = await User.query().patchAndFetchById(req.userID, {
+    terms_accepted_at: new Date()
+  })
 
-//   res.status(200).json({ ok: true, user: user })
-// });
+  if(!user) {
+    return res.status(404).json({ ok: false, message: 'User not found'})
+  }
+
+  res.status(200).json({ ok: true, terms_accepted_at: user.terms_accepted_at })
+});
 
 
 
