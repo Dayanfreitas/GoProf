@@ -1,13 +1,26 @@
 import React from 'react'
-import { Box, Text, Button } from '@chakra-ui/react'
+import { Box, Text, Button, useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { UsersActions } from '../../actions/Users'
 
 export const Terms: React.FC = () => {
+  const toast = useToast()
   const navigate = useNavigate()
 
-  const termAccepted = () => {
-    alert('termAccepted!!')
-    navigate('/')
+  const termAccepted = async () => {
+    alert('Deseja aceitar os termos de uso?')
+    await UsersActions().updateTermsAccepted()
+
+    toast({
+      title: 'Termos de uso aceitos com sucesso!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+
+    setTimeout(() => {
+      navigate('/')
+    }, 3000)
   }
 
   return (
