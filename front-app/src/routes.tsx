@@ -12,6 +12,7 @@ import AuthActions from './actions/Auth'
 import Feed from './views/components/Feed'
 import { Header } from './views/components/Header'
 import { Terms } from './views/components'
+import { ContentsOutlet, ContentsNew } from './views/contents'
 
 // const PrivateRoute: React.FC<any> = () => {
 //   const validAuth = (): boolean => {
@@ -25,8 +26,12 @@ const Routers: React.FC<any> = () => (
   <BrowserRouter>
     <Header />
     <Routes>
-      <Route path="/" element={<Feed />} />
+      <Route path="/" exact element={<Feed />} />
       <Route path="/feed/:id" element={<Feed />} />
+
+      <Route path="/contents" element={<ContentsOutlet />}>
+        <Route path="new" element={<ContentsNew />} />
+      </Route>
       {/* <Route path="login" element={<ViewLogin />} /> */}
       {/* <Route element={<PrivateRoute />}>
           <Route path="users" element={<UsersOutlet />}>
