@@ -34,8 +34,39 @@ export const Terms: React.FC = () => {
       </Text>
       <Text as="b">1. DESCRIÇÃO DO SERVIÇO</Text>
       <Text mb={4}>
-        Nosso serviço permite que os usuários acessem e usem [descreva aqui o
-        seu serviço ou produto].
+        Nosso serviço permite que os usuários acessem e usem GOProf é um
+        aplicativo de compartilhamento de conteúdo que permite aos usuários
+        explorar e interagir com uma variedade de conteúdos interessantes. Ele
+        oferece uma plataforma onde os usuários podem acessar um feed
+        personalizado de vídeos, imagens e textos de diferentes categorias. O
+        aplicativo possui recursos de compartilhamento e denúncia de conteúdo,
+        proporcionando uma experiência interativa e colaborativa para os
+        usuários.
+        <Text mb={4}>Recursos do Aplicativo:</Text>
+        <Text mb={4}>
+          Feed Personalizado: O aplicativo exibe um feed de conteúdos
+          selecionados com base nos interesses e preferências do usuário.
+        </Text>
+        <Text mb={4}>
+          Navegação e Rolagem de Conteúdo: Os usuários podem explorar os
+          conteúdos no feed rolando verticalmente e passando para o próximo
+          conteúdo.
+        </Text>
+        <Text mb={4}>
+          Compartilhamento de Conteúdo: Um botão de compartilhamento permite que
+          os usuários compartilhem o conteúdo em outras plataformas, como redes
+          sociais ou mensagens instantâneas.
+        </Text>
+        <Text mb={4}>
+          Denúncia de Conteúdo: Um botão de denúncia permite que os usuários
+          denunciem conteúdos inapropriados ou que violem as diretrizes do
+          aplicativo.
+        </Text>
+        <Text mb={4}>
+          Autenticação do Google: Os usuários podem se autenticar no aplicativo
+          usando suas contas do Google, facilitando o acesso e o gerenciamento
+          de suas interações.
+        </Text>
       </Text>
       <Text as="b">2. CONDIÇÕES DE USO</Text>
       <Text mb={4}>
