@@ -9,15 +9,22 @@ import {
   FormControl,
   FormLabel,
   Tooltip,
+  Button,
 } from '@chakra-ui/react'
 
 import { QuestionIcon } from '@chakra-ui/icons'
 import { ContentType } from './content-type/content-type'
+import { BsFillCloudArrowUpFill } from 'react-icons/bs'
 
 export const ContentsNew: React.FC<any> = () => {
   const [title, setTitle] = React.useState<string>()
   const [summary, setSummary] = React.useState<string>()
   const [background, setBackground] = React.useState<string>()
+
+  const publish = (): void => {
+    alert('Deseja realmente publicar?')
+    const params = {}
+  }
 
   return (
     <>
@@ -94,6 +101,9 @@ export const ContentsNew: React.FC<any> = () => {
               </Editable>
 
               <ContentType />
+              <Button float={'right'} mt={2} onClick={publish}>
+                <BsFillCloudArrowUpFill size={20} /> Publicar
+              </Button>
             </Box>
           </Box>
         </Box>

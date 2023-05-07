@@ -15,7 +15,6 @@ export const TextContent: React.FC<{}> = () => {
           }}
         />
       </FormControl>
-      {description}
     </>
   )
 }
