@@ -1,33 +1,26 @@
 import React from 'react'
 import {
   Box,
-  Text,
-  Textarea,
   Input,
   Container,
   Editable,
   EditablePreview,
   EditableInput,
+  FormControl,
+  FormLabel,
+  Tooltip,
 } from '@chakra-ui/react'
+
+import { QuestionIcon } from '@chakra-ui/icons'
+import { ContentType } from './content-type/content-type'
 
 export const ContentsNew: React.FC<any> = () => {
   const [title, setTitle] = React.useState<string>()
   const [summary, setSummary] = React.useState<string>()
-  const [description, setDescription] = React.useState<string>()
   const [background, setBackground] = React.useState<string>()
 
   return (
     <>
-      <Box>Título:{title}</Box>
-      <Box>Resumo: {summary}</Box>
-      <Box>Descrição: {description}</Box>
-      <Box>Background: {background}</Box>
-      <Input
-        onChange={(e) => {
-          setBackground(e.target.value)
-        }}
-      />
-
       <Container
         maxW="container.sm"
         p={0}
@@ -52,6 +45,26 @@ export const ContentsNew: React.FC<any> = () => {
             bgGradient="linear(to-b, rgba(0,0,0,0.5), rgba(0,0,0,0.5))"
           >
             <Box p={5}>
+              {/* TODO: SEPARAR FORMULARIO  */}
+              <FormControl>
+                <FormLabel>
+                  Plano de fundo
+                  <Tooltip label="Para definir o plano de fundo, utilize uma URL.">
+                    <QuestionIcon />
+                  </Tooltip>
+                </FormLabel>
+
+                <Input
+                  type="text"
+                  onChange={(e) => {
+                    setBackground(e.target.value)
+                  }}
+                />
+              </FormControl>
+
+              {/* <Tooltip label="Escreva aqui o título do conteúdo">
+                <QuestionIcon />
+              </Tooltip> */}
               <Editable
                 defaultValue="Título editável"
                 fontSize="2xl"
@@ -64,6 +77,9 @@ export const ContentsNew: React.FC<any> = () => {
                 <EditableInput />
               </Editable>
 
+              {/* <Tooltip label="Escreva aqui o resumo do conteúdo">
+                <QuestionIcon />
+              </Tooltip> */}
               <Editable
                 defaultValue="Resumo editável"
                 fontSize="xl"
@@ -77,13 +93,7 @@ export const ContentsNew: React.FC<any> = () => {
                 <EditableInput />
               </Editable>
 
-              <Textarea
-                placeholder="Here is a sample placeholder"
-                onChange={(e) => {
-                  setDescription(e.target.value)
-                }}
-              />
-              {description}
+              <ContentType />
             </Box>
           </Box>
         </Box>
