@@ -11,7 +11,7 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import { FaPlay, FaRegListAlt } from 'react-icons/fa'
+import { FaPlay, FaRegListAlt, FaRegFolder } from 'react-icons/fa'
 import { MdOutlineLogout } from 'react-icons/md'
 
 import { useAccess } from '../../context/access'
@@ -69,11 +69,6 @@ export const Header: React.FC = () => {
                     <FaPlay />
                     <Text ml={1}>Feed</Text>
                   </MenuItem>
-                  <MenuItem onClick={logout}>
-                    {' '}
-                    <MdOutlineLogout />
-                    <Text ml={1}>Logout</Text>
-                  </MenuItem>
                   <MenuItem
                     onClick={() => {
                       navigate('/terms')
@@ -81,6 +76,19 @@ export const Header: React.FC = () => {
                   >
                     <FaRegListAlt />
                     <Text ml={1}>Termos de uso</Text>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate('/contents/all')
+                    }}
+                  >
+                    <FaRegFolder />
+                    <Text ml={1}>Meus conteúdos</Text>
+                  </MenuItem>
+                  <MenuItem onClick={logout}>
+                    {' '}
+                    <MdOutlineLogout />
+                    <Text ml={1}>Logout</Text>
                   </MenuItem>
                 </MenuList>
               </Menu>

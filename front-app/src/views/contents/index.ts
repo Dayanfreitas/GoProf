@@ -1,3 +1,4 @@
 import ContentsOutlet from './contents-outlet'
 import ContentsNew from './content-new'
-export { ContentsOutlet, ContentsNew }
+import ContentsAll from './content-all'
+export { ContentsOutlet, ContentsNew, ContentsAll }

@@ -13,7 +13,7 @@ import { OauthActions } from './actions'
 import Feed from './views/components/Feed'
 import { Header } from './views/components/Header'
 import { Terms } from './views/components'
-import { ContentsOutlet, ContentsNew } from './views/contents'
+import { ContentsOutlet, ContentsNew, ContentsAll } from './views/contents'
 
 const PrivateRoute: React.FC<any> = () => {
   return OauthActions().isAuthenticated() ? <Outlet /> : <Navigate to="/" />
@@ -28,6 +28,7 @@ const Routers: React.FC<any> = () => (
 
       <Route element={<PrivateRoute />}>
         <Route path="/contents" element={<ContentsOutlet />}>
+          <Route path="all" element={<ContentsAll />} />
           <Route path="new" element={<ContentsNew />} />
         </Route>
       </Route>
