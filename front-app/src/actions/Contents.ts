@@ -2,23 +2,32 @@ import { AxiosResponse } from 'axios'
 import Api from '../services/api'
 import ApiAutenticator from '../services/api_ouath'
 
+export type GetAllActionParams = {
+  complete_select?: boolean
+}
+
 export type ReportsActionParams = {
   content_id: number
   type_report: string
 }
 
+export type FiledActionParams = {
+  content_id: string
+  filed: boolean
+}
+
 export function ContentsActions() {
   const getAll = async (
-    params = { complete_select: false }
+    params?: GetAllActionParams
   ): Promise<AxiosResponse> => {
     return new Promise(async (resolve, reject) => {
       try {
-        let response = {}
+        let response = {} as AxiosResponse
 
-        if (params.complete_select) {
-          response = await Api.get('/contents/all', params)
+        if (params && params.complete_select) {
+          response = await Api.get('/contents/all')
         } else {
-          response = await Api.get('/contents', params)
+          response = await Api.get('/contents')
         }
 
         if (response.status === 200) {
@@ -82,10 +91,27 @@ export function ContentsActions() {
     })
   }
 
+  const filed = async (params: FiledActionParams): Promise<AxiosResponse> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await ApiAutenticator.post('/contents/filed', params)
+
+        if (response.status === 200) {
+          resolve(response)
+        }
+      } catch (err) {
+        const { response } = err
+
+        reject(response)
+      }
+    })
+  }
+
   return {
     getAll,
     getById,
     getShareLinks,
     reports,
+    filed,
   }
 }

@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
 
 router.get("/all", async (req, res) => {
   const contents = await Content.query()
-    .select("id", "title", "summary")
+    .select("id", "title", "summary", "filed")
     .where("contents.user_id", "=", 4)
     .from("contents");
 
@@ -139,6 +139,29 @@ router.post("/create", [authMiddleware], async (req, res) => {
     image_path: image_path,
     video_path: video_path,
     user_id: req.userID,
+  });
+
+  res.status(200).json({
+    ok: true,
+    content,
+  });
+});
+
+router.post("/filed", [authMiddleware], async (req, res) => {
+  const { content_id, filed } = req.body;
+
+  let content = await Content.query().findById(content_id);
+
+  if (!content) {
+    return res.status(404).json({ message: "Not found content !" });
+  }
+
+  if (content.user_id != req.userID) {
+    return res.status(404).json({ message: "This content is not yours" });
+  }
+
+  content = await Content.query().patchAndFetchById(content_id, {
+    filed: filed,
   });
 
   res.status(200).json({

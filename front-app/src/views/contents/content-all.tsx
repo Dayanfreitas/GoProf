@@ -19,7 +19,6 @@ import { ContentsActions } from './../../actions'
 
 export const ContentsAll: React.FC<any> = () => {
   const navigate = useNavigate()
-  const [hasFiled, setHasFiled] = React.useState<boolean>(false)
   const [contents, setContents] = React.useState<any[]>([])
 
   useEffect(() => {
@@ -31,14 +30,27 @@ export const ContentsAll: React.FC<any> = () => {
     setContents(response.data.contents)
   }
 
-  const archive = (): void => {
-    if (hasFiled) {
+  const archive = (filed: boolean, id: string): void => {
+    if (filed) {
       alert('Deseja realmente publicar?')
+      fetchFiled(false, id)
     } else {
       alert('Deseja realmente arquivar?')
+      fetchFiled(true, id)
     }
+  }
 
-    const params = {}
+  const fetchFiled = async (filed: boolean, id: string) => {
+    const response = await ContentsActions().filed({
+      content_id: id,
+      filed: filed,
+    })
+
+    const { data } = response
+    const index = contents.findIndex((el) => el.id == id)
+    contents[index] = data.content
+
+    setContents([...contents])
   }
 
   return (
@@ -76,7 +88,7 @@ export const ContentsAll: React.FC<any> = () => {
                       />
                     </Box>
                     <Stack>
-                      {hasFiled && (
+                      {content.filed && (
                         <Text
                           color={'red.500'}
                           textTransform={'uppercase'}
@@ -87,7 +99,7 @@ export const ContentsAll: React.FC<any> = () => {
                           Arquivado
                         </Text>
                       )}
-                      {!hasFiled && (
+                      {!content.filed && (
                         <Text
                           color={'green.500'}
                           textTransform={'uppercase'}
@@ -122,19 +134,22 @@ export const ContentsAll: React.FC<any> = () => {
                       >
                         <FaEye />
                       </Button>
-
+                      dasda
+                      {content.filed}
                       <Button
-                        colorScheme={hasFiled ? 'green' : 'red'}
+                        colorScheme={content.filed ? 'green' : 'red'}
                         rightIcon={
-                          hasFiled ? (
+                          content.filed ? (
                             <BsFillCloudArrowUpFill />
                           ) : (
                             <FaFolderOpen />
                           )
                         }
-                        onClick={archive}
+                        onClick={() => {
+                          archive(content.filed, content.id)
+                        }}
                       >
-                        {hasFiled ? 'Publicar' : 'Arquivar'}
+                        {content.filed ? 'Publicar' : 'Arquivar'}
                       </Button>
                     </Stack>
                   </Box>{' '}
