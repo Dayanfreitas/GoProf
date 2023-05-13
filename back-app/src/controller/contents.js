@@ -33,6 +33,15 @@ router.get("/", async (req, res) => {
   res.status(200).json({ ok: true, contents: contentsIds });
 });
 
+router.get("/all", async (req, res) => {
+  const contents = await Content.query()
+    .select("id", "title", "summary")
+    .where("contents.user_id", "=", 4)
+    .from("contents");
+
+  res.status(200).json({ ok: true, contents: contents });
+});
+
 router.get("/link-shared/:id", async (req, res) => {
   const { id } = req.params;
 
