@@ -56,6 +56,10 @@ export const ContentsAll: React.FC<any> = () => {
   return (
     <>
       <Container maxW="container.lg">
+        <Button colorScheme="blue" variant="outline">
+          Criar novo conteúdo
+        </Button>
+
         <Flex justifyContent="space-evenly" flexWrap="wrap">
           {contents &&
             contents.map((content) => {

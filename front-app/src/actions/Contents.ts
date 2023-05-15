@@ -25,7 +25,7 @@ export function ContentsActions() {
         let response = {} as AxiosResponse
 
         if (params && params.complete_select) {
-          response = await Api.get('/contents/all')
+          response = await ApiAutenticator.get('/contents/all')
         } else {
           response = await Api.get('/contents')
         }
