@@ -10,6 +10,7 @@ import {
   FormLabel,
   Tooltip,
   Button,
+  useToast,
 } from '@chakra-ui/react'
 
 import { QuestionIcon } from '@chakra-ui/icons'
@@ -20,6 +21,7 @@ import { useFormContent } from './../../context/form-content'
 import { ContentsActions } from './../../actions'
 
 export const ContentsNew: React.FC<any> = () => {
+  const toast = useToast()
   const { setPropInState, getState } = useFormContent()
 
   const [title, setTitle] = React.useState<string>()
@@ -34,10 +36,27 @@ export const ContentsNew: React.FC<any> = () => {
       .createContents({
         title,
         summary,
-        background,
+        image_path: background,
         description,
       })
-      .then((response) => console.log('response', response))
+      .then((response) => {
+        toast({
+          title: 'Conteúdo criado com sucesso',
+          description: 'Seu conteúdo foi criado com sucesso.',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      })
+    // .catch((error) => {
+    //   toast({
+    //     title: 'Erro ao criar conteúdo',
+    //     description: 'Seu conteúdo não foi criado.',
+    //     status: 'error',
+    //     duration: 9000,
+    //     isClosable: true,
+    //   })
+    // })
   }
 
   return (

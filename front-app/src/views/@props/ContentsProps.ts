@@ -1,5 +1,5 @@
 export type ContentsProps = {
-  id: number
+  id?: number
   title: string
   summary: string
   description: string

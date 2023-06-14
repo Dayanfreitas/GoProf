@@ -139,7 +139,7 @@ export const ContentsAll: React.FC<any> = () => {
                         colorScheme="blue"
                         variant="outline"
                         onClick={() => {
-                          navigate('/feed/1')
+                          navigate('/feed/' + content.id)
                         }}
                       >
                         <FaEye />
