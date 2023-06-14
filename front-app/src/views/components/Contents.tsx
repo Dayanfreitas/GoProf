@@ -70,9 +70,8 @@ const Content: React.FC<ContentProps> = ({ currentContent }) => {
                   height={'65vh'}
                   overflowY={'auto'}
                   p={2}
-                >
-                  {current.description}
-                </Box>
+                  dangerouslySetInnerHTML={{ __html: current.description }}
+                />
               </Box>
             </Box>
           </Box>

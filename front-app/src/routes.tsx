@@ -3,23 +3,21 @@ import {
   BrowserRouter,
   Route,
   Routes,
-  // Navigate,
-  // Outlet,
+  Navigate,
+  Outlet,
 } from 'react-router-dom'
 import { Text } from '@chakra-ui/layout'
 
-import AuthActions from './actions/Auth'
+import { OauthActions } from './actions'
+
 import Feed from './views/components/Feed'
 import { Header } from './views/components/Header'
 import { Terms } from './views/components'
+import { ContentsOutlet, ContentsNew, ContentsAll } from './views/contents'
 
-// const PrivateRoute: React.FC<any> = () => {
-//   const validAuth = (): boolean => {
-//     const authActions = AuthActions()
-//     return authActions.isAuthenticated()
-//   }
-//   return validAuth() ? <Outlet /> : <Navigate to="login" />
-// }
+const PrivateRoute: React.FC<any> = () => {
+  return OauthActions().isAuthenticated() ? <Outlet /> : <Navigate to="/" />
+}
 
 const Routers: React.FC<any> = () => (
   <BrowserRouter>
@@ -27,6 +25,13 @@ const Routers: React.FC<any> = () => (
     <Routes>
       <Route path="/" element={<Feed />} />
       <Route path="/feed/:id" element={<Feed />} />
+
+      <Route element={<PrivateRoute />}>
+        <Route path="/contents" element={<ContentsOutlet />}>
+          <Route path="all" element={<ContentsAll />} />
+          <Route path="new" element={<ContentsNew />} />
+        </Route>
+      </Route>
       {/* <Route path="login" element={<ViewLogin />} /> */}
       {/* <Route element={<PrivateRoute />}>
           <Route path="users" element={<UsersOutlet />}>
