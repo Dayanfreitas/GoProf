@@ -12,7 +12,7 @@ const linkBaseShared = (id) => {
 };
 
 const textCommonShareLink = () =>
-  `Olá, veja esse conteúdo que encontrei no app da Vai na Web`;
+  `Olá, veja esse conteúdo que encontrei no app GoProf`;
 
 const whatsappShareLink = (id) =>
   `https://api.whatsapp.com/send?text=${
