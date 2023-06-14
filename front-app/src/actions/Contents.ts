@@ -119,7 +119,6 @@ export function ContentsActions() {
           resolve(response)
         }
       } catch (err) {
-        debugger
         const { response } = err
 
         reject(response)

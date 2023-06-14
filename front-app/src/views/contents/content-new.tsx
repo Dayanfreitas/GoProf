@@ -78,7 +78,7 @@ export const ContentsNew: React.FC<any> = () => {
                 <Input
                   type="text"
                   onChange={(e) => {
-                    // setBackground(e.target.value)
+                    setBackground(e.target.value)
                     setPropInState('background', e.target.value)
                   }}
                 />
