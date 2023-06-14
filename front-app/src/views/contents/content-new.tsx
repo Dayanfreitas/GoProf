@@ -16,20 +16,18 @@ import { QuestionIcon } from '@chakra-ui/icons'
 import { ContentType } from './content-type/content-type'
 import { BsFillCloudArrowUpFill } from 'react-icons/bs'
 
+import { useFormContent } from './../../context/form-content'
+
 export const ContentsNew: React.FC<any> = () => {
+  const { setPropInState, getState } = useFormContent()
+
   const [title, setTitle] = React.useState<string>()
   const [summary, setSummary] = React.useState<string>()
   const [background, setBackground] = React.useState<string>()
 
   const publish = (): void => {
+    const { title, summary, background, description } = getState()
     alert('Deseja realmente publicar?')
-    const params = {
-      title: title,
-      summary: summary,
-      background: background,
-    }
-
-    console.log('@params', params)
   }
 
   return (
@@ -70,7 +68,8 @@ export const ContentsNew: React.FC<any> = () => {
                 <Input
                   type="text"
                   onChange={(e) => {
-                    setBackground(e.target.value)
+                    // setBackground(e.target.value)
+                    setPropInState('background', e.target.value)
                   }}
                 />
               </FormControl>
@@ -83,7 +82,8 @@ export const ContentsNew: React.FC<any> = () => {
                 fontSize="2xl"
                 value={title}
                 onChange={(value) => {
-                  setTitle(value)
+                  // setTitle(value)
+                  setPropInState('title', value)
                 }}
               >
                 <EditablePreview />
@@ -99,7 +99,8 @@ export const ContentsNew: React.FC<any> = () => {
                 fontWeight="bold"
                 value={summary}
                 onChange={(value) => {
-                  setSummary(value)
+                  // setSummary(value)
+                  setPropInState('summary', value)
                 }}
               >
                 <EditablePreview />

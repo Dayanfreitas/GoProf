@@ -1,8 +1,10 @@
 import React from 'react'
 import { Textarea, FormControl, FormLabel } from '@chakra-ui/react'
 
+import { useFormContent } from './../../../context/form-content'
+
 export const TextContent: React.FC<{}> = () => {
-  const [description, setDescription] = React.useState<string>()
+  const { setPropInState } = useFormContent()
 
   return (
     <>
@@ -11,7 +13,7 @@ export const TextContent: React.FC<{}> = () => {
         <Textarea
           placeholder="Descrição do conteúdo"
           onChange={(e) => {
-            setDescription(e.target.value)
+            setPropInState('description', e.target.value)
           }}
         />
       </FormControl>
