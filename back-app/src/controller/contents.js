@@ -24,7 +24,10 @@ const facebookShareLink = (id) =>
 // const twitterShareLink = (id) => `https://twitter.com/share?text=${textCommonShareLink()}&url=${linkBaseShared(id)}&via=@user&hashtags=['a','b']}"`
 
 router.get("/", async (req, res) => {
-  const contents = await Content.query().select("id").from("contents");
+  const contents = await Content.query()
+    .select("id")
+    .from("contents")
+    .where("filed", "=", false);
 
   const contentsIds = contents.map((content) => {
     return content.id;
@@ -33,7 +36,7 @@ router.get("/", async (req, res) => {
   res.status(200).json({ ok: true, contents: contentsIds });
 });
 
-router.get("/all", async (req, res) => {
+router.get("/all", authMiddleware, async (req, res) => {
   const contents = await Content.query()
     .select("id", "title", "summary", "filed")
     .where("contents.user_id", "=", 4)

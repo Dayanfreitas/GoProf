@@ -56,7 +56,13 @@ export const ContentsAll: React.FC<any> = () => {
   return (
     <>
       <Container maxW="container.lg">
-        <Button colorScheme="blue" variant="outline">
+        <Button
+          colorScheme="blue"
+          variant="outline"
+          onClick={() => {
+            navigate('/contents/new')
+          }}
+        >
           Criar novo conteúdo
         </Button>
 
@@ -138,7 +144,6 @@ export const ContentsAll: React.FC<any> = () => {
                       >
                         <FaEye />
                       </Button>
-                      dasda
                       {content.filed}
                       <Button
                         colorScheme={content.filed ? 'green' : 'red'}

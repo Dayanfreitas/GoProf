@@ -23,7 +23,13 @@ export const ContentsNew: React.FC<any> = () => {
 
   const publish = (): void => {
     alert('Deseja realmente publicar?')
-    const params = {}
+    const params = {
+      title: title,
+      summary: summary,
+      background: background,
+    }
+
+    console.log('@params', params)
   }
 
   return (
