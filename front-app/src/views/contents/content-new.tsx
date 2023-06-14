@@ -17,6 +17,7 @@ import { ContentType } from './content-type/content-type'
 import { BsFillCloudArrowUpFill } from 'react-icons/bs'
 
 import { useFormContent } from './../../context/form-content'
+import { ContentsActions } from './../../actions'
 
 export const ContentsNew: React.FC<any> = () => {
   const { setPropInState, getState } = useFormContent()
@@ -28,6 +29,15 @@ export const ContentsNew: React.FC<any> = () => {
   const publish = (): void => {
     const { title, summary, background, description } = getState()
     alert('Deseja realmente publicar?')
+
+    ContentsActions()
+      .createContents({
+        title,
+        summary,
+        background,
+        description,
+      })
+      .then((response) => console.log('response', response))
   }
 
   return (

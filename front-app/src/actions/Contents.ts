@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios'
 import Api from '../services/api'
 import ApiAutenticator from '../services/api_ouath'
+import { ContentsProps } from './../views/@props/ContentsProps'
 
 export type GetAllActionParams = {
   complete_select?: boolean
@@ -107,11 +108,32 @@ export function ContentsActions() {
     })
   }
 
+  const createContents = async (
+    params: ContentsProps
+  ): Promise<AxiosResponse> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // const response = await ApiAutenticator.post('/contents/create', params)
+        let response = { status: 200 }
+
+        if (response.status === 200) {
+          resolve(response)
+        }
+      } catch (err) {
+        debugger
+        const { response } = err
+
+        reject(response)
+      }
+    })
+  }
+
   return {
     getAll,
     getById,
     getShareLinks,
     reports,
     filed,
+    createContents,
   }
 }
