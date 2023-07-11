@@ -5,9 +5,15 @@ class Content extends ModelBase {
     return 'contents';
   }
   
-  // static get jsonSchema() {
-   
-  // }
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: [],
+      properties: {
+        id: { type: 'integer' }
+      }
+    }
+  }
 }
 
 module.exports = Content

@@ -19,9 +19,15 @@ class Reports extends ModelBase {
     }
   }
   
-  // static get jsonSchema() {
-   
-  // }
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: [],
+      properties: {
+        id: { type: 'integer' }
+      }
+    }
+  }
 }
 
 module.exports = Reports
