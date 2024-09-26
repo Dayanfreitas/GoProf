@@ -3,14 +3,8 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
+    "lib": ["es6", "dom"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "resolveJsonModule": true,
     "allowJs": true,
     "module": "ES6",
@@ -23,8 +17,5 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "exclude": [
-    "node_modules",
-    "public"
-  ]
+  "exclude": ["node_modules", "public"]
 }
